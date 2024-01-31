@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { recipeData } from "../../recipe.data";
+import { Recipe } from "../../recipe.model";
+import { RecipeService } from "../../recipe.service";
 
 @Component({
   selector: "app-recipe-list",
@@ -7,7 +8,10 @@ import { recipeData } from "../../recipe.data";
   styleUrl: "./recipe-list.component.css",
 })
 export class RecipeListComponent {
-  recipes = recipeData;
-  constructor() {}
-  ngOnInit() {}
+  recipes: Recipe[];
+  constructor(private recipeService: RecipeService) {}
+
+  ngOnInit() {
+    this.recipes = this.recipeService.getRecipes();
+  }
 }
